@@ -54,8 +54,8 @@ jobs:
       - name: Output digest
         id: image-digest
         run: echo "::set-output name=digest::$(docker inspect ${{ fromJson(steps.meta.outputs.json).tags[0] }} | jq -r '.[].RepoDigests[0]')"
-
-build-dotnet:
+  
+  build-dotnet:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -98,7 +98,7 @@ build-dotnet:
       - name: Output digest
         id: image-digest
         run: echo "::set-output name=digest::$(docker inspect ${{ fromJson(steps.meta.outputs.json).tags[0] }} | jq -r '.[].RepoDigests[0]')"
-
+  
   build-go:
     runs-on: ubuntu-latest
     permissions:

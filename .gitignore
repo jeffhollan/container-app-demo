@@ -1,0 +1,5 @@
+.venv/
+bin/
+obj/
+dist/
+out/

@@ -24,8 +24,8 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   kind: 'web'
   properties: { 
     Application_Type: 'web'
-    publicNetworkAccessForIngestion: 'Enabled'
-    publicNetworkAccessForQuery: 'Enabled'
+    Flow_Type: 'Redfield'
+    Request_Source: 'CustomDeployment'
   }
 }
 

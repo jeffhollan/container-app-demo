@@ -79,11 +79,11 @@ resource containerApp 'Microsoft.Web/workerApps@2021-02-01' = {
       //   }
       //   ]
       }
-      dapr: {
-        enabled: true
-        appPort: containerPort
-        appId: containerAppName
-      }
+      // dapr: {
+      //   enabled: true
+      //   appPort: containerPort
+      //   appId: containerAppName
+      // }
     }
   }
 }

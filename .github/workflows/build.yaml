@@ -145,7 +145,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [build-python, build-go]
+    needs: [build-python, build-go, build-dotnet]
     permissions:
       contents: read
       packages: read

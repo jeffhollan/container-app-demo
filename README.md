@@ -1,5 +1,11 @@
 # Container App Demo
 
+Simple microservices solution of a Store API backed by 2 microservices for orders and inventory.
+
+![architecture](./docs/arch.png)
+
+The Store API is a minimal API written in .NET 6.  The orders service is a Python Flask app backed by Postgres.  The inventory service is a Go app backed by Cosmos DB.
+
 ### Local debug
 
 `dapr run --app-id go-app --app-port 8050 -- go run .`

@@ -7,7 +7,14 @@ public class OrderService {
     }
 
     public async Task<string> GetOrder(string orderId) {
-        var res = await httpClient.GetAsync($"http://{PYTHON_SERVICE}");
-        return $"Order status for {orderId}. {res.StatusCode}";
+        try {
+            var res = await httpClient.GetAsync($"http://{PYTHON_SERVICE}/order?id={orderId}");
+            var resultString = await res.Content.ReadAsStringAsync();
+            return $"Order status for {orderId}:\n{resultString}";
+        }
+        catch (Exception e)
+        {
+            return $"Error - order service not available";
+        }
     }
 }

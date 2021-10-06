@@ -21,6 +21,7 @@ func (a *App) Initialize(client dapr.Client, pythonFqdn string) {
 	a.Router = mux.NewRouter()
 
 	a.Router.HandleFunc("/", a.Hello).Methods("GET")
+	a.Router.HandleFunc("/inventory", a.GetInventory).Methods("GET")
 	a.Router.HandleFunc("/ping", a.Ping).Methods("GET")
 }
 
@@ -39,6 +40,10 @@ func (a *App) Hello(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 	w.Write(resp)
+}
+
+func (a *App) GetInventory(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Inventory in stock"))
 }
 
 func (a *App) Ping(w http.ResponseWriter, r *http.Request) {

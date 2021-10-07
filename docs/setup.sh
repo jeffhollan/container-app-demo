@@ -2,7 +2,7 @@ export rg='ignite-demo'
 export log_workspace='logs-env-vjhepqwyh42cw'
 export environment='env-vjhepqwyh42cw'
 export pass='0ba8e36ae72238402bf52cf5a9a9f84d32c39e74'
-export dotnetImage='ghcr.io/jeffhollan/container-app-demo/dotnet-service:main'
+export dotnetImage='ghcr.io/jeffhollan/container-app-demo/dotnet-service@sha256:39b82775605b5f4bc67b6ccfa7e4b3e7035b8ba73941b4d7281ad0ce0843e3a5'
 export pythonImage='ghcr.io/jeffhollan/container-app-demo/python-service:main'
 export goImage='ghcr.io/jeffhollan/container-app-demo/go-service:main'
 

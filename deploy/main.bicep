@@ -26,6 +26,14 @@ var goServiceAppName = 'go-app'
 //   }
 // }
 
+// create cosmosdb
+module cosmosdb 'cosmosdb.bicep' = {
+  name: 'cosmosdb'
+  params: {
+    
+  }
+}
+
 // Python App
 module pythonService 'container-http.bicep' = {
   name: pythonServiceAppName
@@ -39,6 +47,41 @@ module pythonService 'container-http.bicep' = {
     containerRegistry: containerRegistry
     containerRegistryUsername: containerRegistryUsername
     containerRegistryPassword: containerRegistryPassword
+    daprComponents: [
+      {
+        name: 'orders'
+        type: 'state.azure.cosmosdb'
+        version: 'v1'
+        metadata: [
+          {
+            name: 'url'
+            value: cosmosdb.outputs.documentEndpoint
+          }
+          {
+            name: 'database'
+            value: 'ordersDb'
+          }
+          {
+            name: 'collection'
+            value: 'orders'
+          }
+          {
+            name: 'masterkey'
+            secretRef: 'masterkey'
+          }
+        ]
+      }
+    ]
+    secrets: [
+      {
+        name: 'docker-password'
+        value: containerRegistryPassword
+      }
+      {
+        name: 'masterkey'
+        value: listKeys(cosmosdb.outputs.accountId, cosmosdb.outputs.accountApiVersion).primaryMasterKey
+      }
+    ]
   }
 }
 

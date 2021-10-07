@@ -18,8 +18,8 @@ def getOrder():
             id = request.args.get('id')
             if id:
                 # Get the order status from Cosmos DB via Dapr
-                # state = d.get_state(store_name='orders', key=id)
-                state = {'foo': 'bar'}
+                state = d.get_state(store_name='orders', key=id)
+                # state = {'foo': 'bar'}
                 resp = jsonify(state)
                 resp.status_code = 200
                 return resp

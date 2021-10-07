@@ -7,12 +7,19 @@ param isExternalIngress bool
 param containerRegistry string
 param containerRegistryUsername string
 param env array = []
+param daprComponents array = []
+param secrets array = [
+  {
+    name: 'docker-password'
+    value: containerRegistryPassword
+  }
+]
 
 @allowed([
   'multiple'
   'single'
 ])
-param revisionMode string = 'single'
+param revisionMode string = 'multiple'
 
 @secure()
 param containerRegistryPassword string
@@ -29,12 +36,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
     kubeEnvironmentId: environmentId
     configuration: {
       activeRevisionsMode: revisionMode
-      secrets: [
-        {
-          name: registrySecretRefName
-          value: containerRegistryPassword
-        }
-      ]
+      secrets: secrets
       registries: [
         {
           server: containerRegistry
@@ -82,6 +84,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       dapr: {
         enabled: true
         appPort: containerPort
+        components: daprComponents
       }
     }
   }

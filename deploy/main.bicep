@@ -79,7 +79,7 @@ module pythonService 'container-http.bicep' = {
       }
       {
         name: 'masterkey'
-        value: listKeys(cosmosdb.outputs.accountId, cosmosdb.outputs.accountApiVersion).primaryMasterKey
+        value: cosmosdb.outputs.primaryMasterKey
       }
     ]
   }

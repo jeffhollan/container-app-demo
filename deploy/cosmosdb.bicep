@@ -27,9 +27,6 @@ param maxStalenessPrefix int = 100000
 @maxValue(86400)
 param maxIntervalInSeconds int = 300
 
-@description('Enable automatic failover for regions')
-param automaticFailover bool = true
-
 @description('The name for the database')
 param databaseName string = 'ordersDb'
 
@@ -77,7 +74,6 @@ resource accountName_resource 'Microsoft.DocumentDB/databaseAccounts@2021-01-15'
     consistencyPolicy: consistencyPolicy[defaultConsistencyLevel]
     locations: locations
     databaseAccountOfferType: 'Standard'
-    enableAutomaticFailover: automaticFailover
   }
 }
 
@@ -113,5 +109,4 @@ resource accountName_databaseName_containerName 'Microsoft.DocumentDB/databaseAc
 }
 
 output documentEndpoint string = accountName_resource.properties.documentEndpoint
-output accountApiVersion string = accountName_resource.apiVersion
-output accountId string = accountName_resource.id
+output primaryMasterKey string = listKeys(accountName_resource.id, accountName_resource.apiVersion).primaryMasterKey

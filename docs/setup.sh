@@ -1,6 +1,6 @@
-export rg='d-container'
-export log_workspace='container-logs'
-export environment='jehollan-env'
+export rg='ignite-demo'
+export log_workspace='logs-env-vjhepqwyh42cw'
+export environment='env-vjhepqwyh42cw'
 
 az cloud set --name CloudWithCustomEndpoint
 

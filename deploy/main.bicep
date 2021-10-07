@@ -18,21 +18,21 @@ var dotnetServiceAppName = 'dotnet-app'
 var pythonServiceAppName = 'python-app'
 var goServiceAppName = 'go-app'
 
-// container app environment
-module environment 'environment.bicep' = {
-  name: 'container-app-environment'
-  params: {
-    environmentName: environmentName
-  }
-}
+// // container app environment
+// module environment 'environment.bicep' = {
+//   name: 'container-app-environment'
+//   params: {
+//     environmentName: environmentName
+//   }
+// }
 
 // Python App
 module pythonService 'container-http.bicep' = {
   name: pythonServiceAppName
   params: {
     containerAppName: pythonServiceAppName
-    location: environment.outputs.location
-    environmentId: environment.outputs.environmentId
+    location: 'northcentralusstage'
+    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
     containerImage: pythonImage
     containerPort: pythonPort
     isExternalIngress: isPythonExternalIngress
@@ -48,8 +48,8 @@ module dotnetService 'container-http.bicep' = {
   name: dotnetServiceAppName
   params: {
     containerAppName: dotnetServiceAppName
-    location: environment.outputs.location
-    environmentId: environment.outputs.environmentId
+    location: 'northcentralusstage'
+    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
     containerImage: dotnetImage
     containerPort: dotnetPort
     isExternalIngress: isDotnetExternalIngress
@@ -71,8 +71,8 @@ module goService 'container-http.bicep' = {
   name: goServiceAppName
   params: {
     containerAppName: goServiceAppName
-    location: environment.outputs.location
-    environmentId: environment.outputs.environmentId
+    location: 'northcentralusstage'
+    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
     containerImage: goImage
     containerPort: goPort
     isExternalIngress: isGoExternalIngress
@@ -82,5 +82,6 @@ module goService 'container-http.bicep' = {
   }
 }
 
+output dotnetFqdn string = dotnetService.outputs.fqdn
 output pythonFqdn string = pythonService.outputs.fqdn
 output goFqdn string = goService.outputs.fqdn

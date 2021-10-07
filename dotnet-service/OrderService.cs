@@ -1,6 +1,6 @@
 public class OrderService {
     private readonly HttpClient httpClient;
-    private readonly string orderService = $"http://localhost:{Environment.GetEnvironmentVariable("DAPR_HTTP_PORT")}/v1.0/invoke/{Environment.GetEnvironmentVariable("ORDER_SERVICE_NAME")}";
+    private readonly string orderService = $"http://localhost:{Environment.GetEnvironmentVariable("DAPR_HTTP_PORT")}/v1.0/invoke/{Environment.GetEnvironmentVariable("ORDER_SERVICE_NAME")}/method";
 
     public OrderService(IHttpClientFactory httpClientFactory) {
         this.httpClient = httpClientFactory.CreateClient();
@@ -8,7 +8,7 @@ public class OrderService {
 
     public async Task<string> GetOrder(string orderId) {
         try {
-            var res = await httpClient.GetAsync($"{orderService}/method/order?id={orderId}");
+            var res = await httpClient.GetAsync($"{orderService}/order?id={orderId}");
             var resultString = await res.Content.ReadAsStringAsync();
             return $"Order status for {orderId}:\n{resultString}";
         }

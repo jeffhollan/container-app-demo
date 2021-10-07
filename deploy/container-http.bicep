@@ -35,7 +35,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
   properties: {
     kubeEnvironmentId: environmentId
     configuration: {
-      activeRevisionsMode: revisionMode
+      // activeRevisionsMode: revisionMode
       secrets: secrets
       registries: [
         {
@@ -70,7 +70,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       ]
       scale: {
         minReplicas: 1
-        maxReplicas: 10
+      //  maxReplicas: 10
       //   rules: [{
       //     name: 'httpscale'
       //     http: {

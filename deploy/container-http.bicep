@@ -19,7 +19,7 @@ param secrets array = [
   'multiple'
   'single'
 ])
-param revisionMode string = 'multiple'
+param revisionMode string = 'single'
 
 @secure()
 param containerRegistryPassword string
@@ -35,7 +35,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
   properties: {
     kubeEnvironmentId: environmentId
     configuration: {
-      // activeRevisionsMode: revisionMode
+      activeRevisionsMode: revisionMode
       secrets: secrets
       registries: [
         {
@@ -69,7 +69,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
         }
       ]
       scale: {
-      //  minReplicas: 1
+        minReplicas: 1
       //  maxReplicas: 10
       //   rules: [{
       //     name: 'httpscale'

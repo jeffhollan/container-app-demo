@@ -2,9 +2,9 @@ export rg='ignite-demo'
 export log_workspace='logs-env-vjhepqwyh42cw'
 export environment='env-vjhepqwyh42cw'
 export pass='0ba8e36ae72238402bf52cf5a9a9f84d32c39e74'
-export dotnetImage='ghcr.io/jeffhollan/container-app-demo/dotnet-service@sha256:39b82775605b5f4bc67b6ccfa7e4b3e7035b8ba73941b4d7281ad0ce0843e3a5'
-export pythonImage='ghcr.io/jeffhollan/container-app-demo/python-service:main'
-export goImage='ghcr.io/jeffhollan/container-app-demo/go-service:main'
+export dotnetImage='ghcr.io/jeffhollan/container-app-demo/dotnet-service@sha256:d6cd2d8668483298c3c87a30ea1f78ab2723b6de0c3a63f488012e1492e3a675'
+export pythonImage='ghcr.io/jeffhollan/container-app-demo/python-service@sha256:4442265a3d73289311ad4fd5e0e5a30d54c27aef96df1eb34ab3b57136e29c67'
+export goImage='ghcr.io/jeffhollan/container-app-demo/go-service@sha256:75e5ad245426890ec095b4eb2a03b13c382b8269b779ef5ef0f0a7828101d4dd'
 
 # az cloud set --name CloudWithCustomEndpoint
 
@@ -26,15 +26,15 @@ export goImage='ghcr.io/jeffhollan/container-app-demo/go-service:main'
 
 az deployment group create -g $rg -f ./deploy/main.bicep \
    -p \
-      dotnetImage='ghcr.io/jeffhollan/container-app-demo/dotnet-service@sha256:16f335211261cca9f97d69b93aea03b5c84f84e57d01db7edf6ab950e2c97e11' \
+      dotnetImage=$dotnetImage \
       dotnetPort=80 \
       isDotnetExternalIngress=true \
-      pythonImage='ghcr.io/jeffhollan/container-app-demo/python-service@sha256:c001b8bc9b99b2cde5195a7bbf19ecc5d8438f36ef941b387bf35d17bc3bcd9c' \
+      pythonImage=$pythonImage \
       pythonPort=5000 \
-      isPythonExternalIngress=false \
-      goImage='ghcr.io/jeffhollan/container-app-demo/go-service@sha256:5e546e6505019c5b2c8ad2e845350761ea61c069f93b17d5284a367e288fd485' \
+      isPythonExternalIngress=true \
+      goImage=$goImage \
       goPort=8050 \
-      isGoExternalIngress=false \
+      isGoExternalIngress=true \
       containerRegistry=ghcr.io \
       containerRegistryUsername=jeffhollan \
       containerRegistryPassword=$pass

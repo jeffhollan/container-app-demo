@@ -43,6 +43,23 @@ module pythonService 'container-http.bicep' = {
 }
 
 
+// Go App
+module goService 'container-http.bicep' = {
+  name: goServiceAppName
+  params: {
+    containerAppName: goServiceAppName
+    location: 'northcentralusstage'
+    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
+    containerImage: goImage
+    containerPort: goPort
+    isExternalIngress: isGoExternalIngress
+    containerRegistry: containerRegistry
+    containerRegistryUsername: containerRegistryUsername
+    containerRegistryPassword: containerRegistryPassword
+  }
+}
+
+
 // dotnet App
 module dotnetService 'container-http.bicep' = {
   name: dotnetServiceAppName
@@ -59,28 +76,17 @@ module dotnetService 'container-http.bicep' = {
     env: [
       {
         name: 'ORDER_SERVICE_NAME'
-        value: pythonService.outputs.fqdn
+        value: pythonServiceAppName
+      }
+      {
+        name: 'INVENTORY_SERVICE_NAME'
+        value: goServiceAppName
       }
     ]
   }
 }
 
 
-// Go App
-module goService 'container-http.bicep' = {
-  name: goServiceAppName
-  params: {
-    containerAppName: goServiceAppName
-    location: 'northcentralusstage'
-    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
-    containerImage: goImage
-    containerPort: goPort
-    isExternalIngress: isGoExternalIngress
-    containerRegistry: containerRegistry
-    containerRegistryUsername: containerRegistryUsername
-    containerRegistryPassword: containerRegistryPassword
-  }
-}
 
 output dotnetFqdn string = dotnetService.outputs.fqdn
 output pythonFqdn string = pythonService.outputs.fqdn

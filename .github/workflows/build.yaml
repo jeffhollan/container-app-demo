@@ -175,10 +175,10 @@ jobs:
                 isDotnetExternalIngress=true \
                 pythonImage='${{ needs.build-python.outputs.containerImage }}' \
                 pythonPort=5000 \
-                isPythonExternalIngress=true \
+                isPythonExternalIngress=false \
                 goImage='${{ needs.build-go.outputs.containerImage }}' \
                 goPort=8050 \
-                isGoExternalIngress=true \
+                isGoExternalIngress=false \
                 containerRegistry=${{ env.REGISTRY }} \
                 containerRegistryUsername=${{ github.actor }} \
                 containerRegistryPassword=${{ secrets.GITHUB_TOKEN }}

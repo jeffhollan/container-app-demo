@@ -157,13 +157,13 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          environment: 'CloudWithCustomEndpoint'
 
       - name: Deploy bicep
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az group create -g ${{ secrets.RESOURCE_GROUP }} -l centralus
+            az cloud set --name CloudWithCustomEndpoint
+            az group create -g ${{ secrets.RESOURCE_GROUP }} -l northcentralus
             az deployment group create -g ${{ secrets.RESOURCE_GROUP }} -f ./deploy/main.bicep \
              -p \
                 dotnetImage='${{ needs.build-dotnet.outputs.containerImage }}' \

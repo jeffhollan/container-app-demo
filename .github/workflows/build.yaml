@@ -162,6 +162,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.1.6-py2.py3-none-any.whl
             az cloud list -otable
             az cloud set --name CloudWithCustomEndpoint
             az group create -g ${{ secrets.RESOURCE_GROUP }} -l northcentralus

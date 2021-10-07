@@ -33,6 +33,7 @@ def getOrder():
                 return resp
         except Exception as e:
             app.logger.info(e)
+            return str(e)
         finally:
             app.logger.info('completed order call')
 

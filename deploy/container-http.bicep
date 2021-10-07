@@ -62,14 +62,14 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
           image: containerImage
           name: containerAppName
           env: env
-          resources: {
-            cpu: cpu
-            memory: memory
-          }
+          // resources: {
+          //   cpu: cpu
+          //   memory: memory
+          // }
         }
       ]
       scale: {
-        minReplicas: 1
+      //  minReplicas: 1
       //  maxReplicas: 10
       //   rules: [{
       //     name: 'httpscale'

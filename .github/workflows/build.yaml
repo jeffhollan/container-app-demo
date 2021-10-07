@@ -162,6 +162,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az cloud list -otable
             az cloud set --name CloudWithCustomEndpoint
             az group create -g ${{ secrets.RESOURCE_GROUP }} -l northcentralus
             az deployment group create -g ${{ secrets.RESOURCE_GROUP }} -f ./deploy/main.bicep \

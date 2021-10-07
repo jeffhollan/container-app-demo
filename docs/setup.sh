@@ -20,6 +20,21 @@ export goImage='ghcr.io/jeffhollan/container-app-demo/go-service:main'
 
 
 
-az containerapp create -n dotnet-app -g $rg --image $dotnetImage --environment $environment --cpu 0.5 --memory '500Mi'  --dapr-app-port 80 --enable-dapr --ingress 'external' --target-port 80 --min-replicas 1 --registry-username jeffhollan --registry-login-server 'ghcr.io' --registry-password $pass -v ORDER_SERVICE_NAME=python-app;INVENTORY_SERVICE_NAME=go-app --debug
-az containerapp create -n python-app -g $rg --image $pythonImage --environment $environment --cpu 0.5 --memory '500Mi'  --dapr-app-port 5000 --dapr-app-id python-app --enable-dapr --ingress 'external' --target-port 5000 --min-replicas 1 --registry-username jeffhollan --registry-login-server 'ghcr.io' --registry-password $pass -v FOO=bar --revisions-mode 'multiple' --debug
-az containerapp create -n go-app -g $rg --image $goImage --environment $environment --cpu 0.5 --memory '500Mi'  --dapr-app-port 8050 --enable-dapr --ingress 'external' --target-port 8050 --min-replicas 1 --registry-username jeffhollan --registry-login-server 'ghcr.io' --registry-password $pass -v FOO=bar
+# az containerapp create -n dotnet-app -g $rg --image $dotnetImage --environment $environment --cpu 0.5 --memory '500Mi'  --dapr-app-port 80 --enable-dapr --ingress 'external' --target-port 80 --min-replicas 1 --registry-username jeffhollan --registry-login-server 'ghcr.io' --registry-password $pass -v ORDER_SERVICE_NAME=python-app;INVENTORY_SERVICE_NAME=go-app --debug
+# az containerapp create -n python-app -g $rg --image $pythonImage --environment $environment --cpu 0.5 --memory '500Mi'  --dapr-app-port 5000 --dapr-app-id python-app --enable-dapr --ingress 'external' --target-port 5000 --min-replicas 1 --registry-username jeffhollan --registry-login-server 'ghcr.io' --registry-password $pass -v FOO=bar --revisions-mode 'multiple' --debug
+# az containerapp create -n go-app -g $rg --image $goImage --environment $environment --cpu 0.5 --memory '500Mi'  --dapr-app-port 8050 --enable-dapr --ingress 'external' --target-port 8050 --min-replicas 1 --registry-username jeffhollan --registry-login-server 'ghcr.io' --registry-password $pass -v FOO=bar
+
+az deployment group create -g $rg -f ./deploy/main.bicep \
+   -p \
+      dotnetImage='ghcr.io/jeffhollan/container-app-demo/dotnet-service@sha256:16f335211261cca9f97d69b93aea03b5c84f84e57d01db7edf6ab950e2c97e11' \
+      dotnetPort=80 \
+      isDotnetExternalIngress=true \
+      pythonImage='ghcr.io/jeffhollan/container-app-demo/python-service@sha256:c001b8bc9b99b2cde5195a7bbf19ecc5d8438f36ef941b387bf35d17bc3bcd9c' \
+      pythonPort=5000 \
+      isPythonExternalIngress=false \
+      goImage='ghcr.io/jeffhollan/container-app-demo/go-service@sha256:5e546e6505019c5b2c8ad2e845350761ea61c069f93b17d5284a367e288fd485' \
+      goPort=8050 \
+      isGoExternalIngress=false \
+      containerRegistry=ghcr.io \
+      containerRegistryUsername=jeffhollan \
+      containerRegistryPassword=$pass

@@ -95,7 +95,7 @@ resource accountName_databaseName_containerName 'Microsoft.DocumentDB/databaseAc
       id: containerName
       partitionKey: {
         paths: [
-          '/storeId'
+          '/partitionKey'
         ]
         kind: 'Hash'
       }

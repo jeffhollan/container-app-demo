@@ -38,3 +38,6 @@ az deployment group create -g $rg -f ./deploy/main.bicep \
       containerRegistry=ghcr.io \
       containerRegistryUsername=jeffhollan \
       containerRegistryPassword=$pass
+
+# export ORDER_SERVICE_NAME=python-app && dapr run --app-id dotnet-app --app-port 5157 -- dotnet run
+# dapr run --app-id python-app --app-port 5000 -d . -- python app.py

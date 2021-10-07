@@ -79,11 +79,10 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       //   }
       //   ]
       }
-      // dapr: {
-      //   enabled: true
-      //   appPort: containerPort
-      //   appId: containerAppName
-      // }
+      dapr: {
+        enabled: true
+        appPort: containerPort
+      }
     }
   }
 }

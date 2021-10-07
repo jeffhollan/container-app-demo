@@ -6,7 +6,7 @@ public class InventoryService {
         this.httpClient = httpClientFactory.CreateClient();
     }
     public async Task<string> GetInventory(string productId) {
-        try
+        try {
             var res = await httpClient.GetAsync($"{inventoryService}/method/inventory");
             var resultString = await res.Content.ReadAsStringAsync();
             return $"Inventory status for {productId}: {resultString}";

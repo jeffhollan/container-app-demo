@@ -21,9 +21,9 @@ var cpu = json('0.5')
 var memory = '500Mi'
 var registrySecretRefName = 'docker-password'
 
-resource containerApp 'Microsoft.Web/workerApps@2021-02-01' = {
+resource containerApp 'Microsoft.Web/containerApps@2021-02-01' = {
   name: containerAppName
-  kind: 'workerapp'
+  kind: 'containerapp'
   location: location
   properties: {
     kubeEnvironmentId: environmentId

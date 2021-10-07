@@ -1,8 +1,8 @@
 param environmentName string
 param logAnalyticsWorkspaceName string = 'logs-${environmentName}'
 param appInsightsName string = 'appins-${environmentName}'
-param location string = 'Central US EUAP'
-param logLocation string = 'Central US'
+param location string = 'northcentralusstage'
+param logLocation string = 'North Central US'
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-03-01-preview' = {
   name: logAnalyticsWorkspaceName
@@ -42,7 +42,7 @@ resource environment 'Microsoft.Web/kubeEnvironments@2021-02-01' = {
         sharedKey: logAnalyticsWorkspace.listKeys().primarySharedKey
       }
     }
-    workerAppsConfiguration: {
+    containerAppsConfiguration: {
       daprAIInstrumentationKey: appInsights.properties.InstrumentationKey
     }
   }

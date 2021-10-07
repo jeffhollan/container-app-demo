@@ -10,4 +10,4 @@ export log_secret=`az monitor log-analytics workspace get-shared-keys --query pr
 
 az containerapp env create -n $environment -g $rg --logs-workspace-id $log_clientid --logs-workspace-key $log_secret --location "North Central US (Stage)"
 
-az containerapp create -n dotnet-app -g $rg --environment $environment --image ghcr.io/jeffhollan/container-app-demo/dotnet-service:main --target-port 80 --ingress 'external' -l "North Central US (Stage)"
+# az containerapp create -n dotnet-app -g $rg --environment $environment --image ghcr.io/jeffhollan/container-app-demo/dotnet-service:main --target-port 80 --ingress 'external' -l "North Central US (Stage)"

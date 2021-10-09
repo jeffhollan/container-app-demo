@@ -4,7 +4,9 @@ Simple microservices solution of a Store API backed by 2 microservices for order
 
 ![architecture](./docs/arch.png)
 
-The Store API is a minimal API written in .NET 6.  The orders service is a Python Flask app backed by Postgres.  The inventory service is a Go app backed by Cosmos DB.
+The Store API is a minimal API written in Node 14 (Express.js).  The orders service is a Python Flask app backed by Cosmos DB.  The inventory service is a Go app.
+
+Dapr brokers service-to-service communication, and integrates with state store for added flexibility.
 
 ### Local debug
 

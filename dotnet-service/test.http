@@ -1,1 +1,0 @@
-GET http://localhost:5157/order?id=foo

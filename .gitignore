@@ -4,3 +4,4 @@ obj/
 dist/
 out/
 dotnet-service/Properties/
+node_modules/

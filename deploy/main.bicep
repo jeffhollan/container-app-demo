@@ -1,7 +1,7 @@
 param environmentName string = 'env-${uniqueString(resourceGroup().id)}'
-param dotnetImage string = 'nginx'
-param dotnetPort int = 80
-param isDotnetExternalIngress bool = true
+param nodeImage string = 'nginx'
+param nodePort int = 3000
+param isNodeExternalIngress bool = true
 param pythonImage string = 'nginx'
 param pythonPort int = 5000
 param isPythonExternalIngress bool = false
@@ -14,7 +14,7 @@ param containerRegistryUsername string
 @secure()
 param containerRegistryPassword string
 
-var dotnetServiceAppName = 'dotnet-app'
+var nodeServiceAppName = 'node-app'
 var pythonServiceAppName = 'python-app'
 var goServiceAppName = 'go-app'
 
@@ -103,16 +103,16 @@ module goService 'container-http.bicep' = {
 }
 
 
-// dotnet App
-module dotnetService 'container-http.bicep' = {
-  name: dotnetServiceAppName
+// node App
+module nodeService 'container-http.bicep' = {
+  name: nodeServiceAppName
   params: {
-    containerAppName: dotnetServiceAppName
+    containerAppName: nodeServiceAppName
     location: 'northcentralusstage'
     environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
-    containerImage: dotnetImage
-    containerPort: dotnetPort
-    isExternalIngress: isDotnetExternalIngress
+    containerImage: nodeImage
+    containerPort: nodePort
+    isExternalIngress: isNodeExternalIngress
     containerRegistry: containerRegistry
     containerRegistryUsername: containerRegistryUsername
     containerRegistryPassword: containerRegistryPassword
@@ -131,6 +131,6 @@ module dotnetService 'container-http.bicep' = {
 
 
 
-output dotnetFqdn string = dotnetService.outputs.fqdn
+output nodeFqdn string = nodeService.outputs.fqdn
 output pythonFqdn string = pythonService.outputs.fqdn
 output goFqdn string = goService.outputs.fqdn

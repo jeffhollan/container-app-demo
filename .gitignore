@@ -1,5 +1,5 @@
 .venv/
-bin/
+dotnet-service/bin/
 obj/
 dist/
 out/

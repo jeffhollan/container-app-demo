@@ -172,7 +172,7 @@ jobs:
              -p \
                 nodeImage='${{ needs.build-node.outputs.containerImage }}' \
                 nodePort=3000 \
-                isnodeExternalIngress=true \
+                isNodeExternalIngress=true \
                 pythonImage='${{ needs.build-python.outputs.containerImage }}' \
                 pythonPort=5000 \
                 isPythonExternalIngress=true \

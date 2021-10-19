@@ -42,7 +42,7 @@ resource environment 'Microsoft.Web/kubeEnvironments@2021-02-01' = {
         sharedKey: logAnalyticsWorkspace.listKeys().primarySharedKey
       }
     }
-    containerAppsConfiguration: {
+    WorkerAppsConfiguration: {
       daprAIInstrumentationKey: appInsights.properties.InstrumentationKey
     }
   }

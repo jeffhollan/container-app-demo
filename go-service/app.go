@@ -27,19 +27,19 @@ func (a *App) Initialize(client dapr.Client, pythonFqdn string) {
 
 func (a *App) Hello(w http.ResponseWriter, r *http.Request) {
 	// Dapr version
-	ctx := context.Background()
-	resp, err := a.daprClient.InvokeMethod(ctx, "python-app", "hello", "get")
+	// ctx := context.Background()
+	// resp, err := a.daprClient.InvokeMethod(ctx, "python-app", "hello", "get")
 	// resp, err := http.Get(fmt.Sprintf("http://%s/hello", a.pythonFqdn))
 	// if err != nil {
 	// 	log.Println(err)
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 	// body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Println(err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-	w.Write(resp)
+	// if err != nil {
+	// 	log.Println(err)
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// }
+	w.Write([]byte("Hello world"))
 }
 
 func (a *App) GetInventory(w http.ResponseWriter, r *http.Request) {

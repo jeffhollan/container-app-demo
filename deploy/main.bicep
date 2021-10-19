@@ -19,12 +19,12 @@ var pythonServiceAppName = 'python-app'
 var goServiceAppName = 'go-app'
 
 // // container app environment
-// module environment 'environment.bicep' = {
-//   name: 'container-app-environment'
-//   params: {
-//     environmentName: environmentName
-//   }
-// }
+module environment 'environment.bicep' = {
+  name: 'container-app-environment'
+  params: {
+    environmentName: environmentName
+  }
+}
 
 // create cosmosdb
 module cosmosdb 'cosmosdb.bicep' = {

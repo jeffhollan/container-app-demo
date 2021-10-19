@@ -40,7 +40,7 @@ module pythonService 'container-http.bicep' = {
   params: {
     containerAppName: pythonServiceAppName
     location: 'northcentralusstage'
-    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
+    environmentId: environment.outputs.environmentId
     containerImage: pythonImage
     containerPort: pythonPort
     isExternalIngress: isPythonExternalIngress
@@ -92,7 +92,7 @@ module goService 'container-http.bicep' = {
   params: {
     containerAppName: goServiceAppName
     location: 'northcentralusstage'
-    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
+    environmentId: environment.outputs.environmentId
     containerImage: goImage
     containerPort: goPort
     isExternalIngress: isGoExternalIngress
@@ -109,7 +109,7 @@ module nodeService 'container-http.bicep' = {
   params: {
     containerAppName: nodeServiceAppName
     location: 'northcentralusstage'
-    environmentId: '/subscriptions/411a9cd0-f057-4ae5-8def-cc1ea96a3933/resourceGroups/ignite-demo/providers/Microsoft.Web/kubeEnvironments/env-vjhepqwyh42cw'
+    environmentId: environment.outputs.environmentId
     containerImage: nodeImage
     containerPort: nodePort
     isExternalIngress: isNodeExternalIngress

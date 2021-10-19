@@ -38,7 +38,7 @@ func (a *App) Hello(w http.ResponseWriter, r *http.Request) {
 	// 	log.Println(err)
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
-	w.Write([]byte("Hello world"))
+	w.Write([]byte("Hello world!"))
 }
 
 func (a *App) GetInventory(w http.ResponseWriter, r *http.Request) {

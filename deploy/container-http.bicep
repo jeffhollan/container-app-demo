@@ -35,7 +35,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
   properties: {
     kubeEnvironmentId: environmentId
     configuration: {
-      activeRevisionsMode: revisionMode
+      // activeRevisionsMode: revisionMode
       secrets: secrets
       registries: [
         {

@@ -148,6 +148,10 @@ module apimStoreApi 'api-management-api.bicep' = {
     apiName: 'store-api'
     apimInstanceName: apimName
   }
+  dependsOn: [
+    apim
+    nodeService
+  ]
 }
 
 output nodeFqdn string = nodeService.outputs.fqdn

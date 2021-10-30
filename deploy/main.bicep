@@ -1,4 +1,6 @@
+param location string = 'northcentralusstage'
 param environmentName string = 'env-${uniqueString(resourceGroup().id)}'
+param apimName string = 'store-api-management'
 param nodeImage string = 'nginx'
 param nodePort int = 3000
 param isNodeExternalIngress bool = true
@@ -31,6 +33,17 @@ module cosmosdb 'cosmosdb.bicep' = {
   name: 'cosmosdb'
   params: {
     
+  }
+}
+
+// create api management
+module apim 'api-management.bicep' = {
+  name: 'apim'
+  params: {
+    apimName: apimName
+    apimLocation: 'northcentralus'
+    publisherName: 'Contoso Store'
+    publisherEmail: 'demo@example.com'
   }
 }
 
@@ -129,7 +142,13 @@ module nodeService 'container-http.bicep' = {
   }
 }
 
-
+module apimStoreApi 'api-management-api.bicep' = {
+  name: 'store-api'
+  params: {
+    apiName: 'store-api'
+    apimInstanceName: apimName
+  }
+}
 
 output nodeFqdn string = nodeService.outputs.fqdn
 output pythonFqdn string = pythonService.outputs.fqdn

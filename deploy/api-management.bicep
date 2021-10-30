@@ -17,7 +17,7 @@ resource storeapim 'Microsoft.ApiManagement/service@2020-12-01' = {
   location: apimLocation
   sku: {
     name: sku
-    capacity: 1
+    capacity: ((sku == 'Consumption') ? 0 : 1)
   }
   properties: {
     publisherEmail: publisherEmail

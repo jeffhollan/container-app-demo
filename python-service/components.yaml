@@ -3,14 +3,10 @@ kind: Component
 metadata:
   name: orders
 spec:
-  type: state.azure.cosmosdb
+  type: state.redis
   version: v1
   metadata:
-  - name: url
-    value: <replace-with-account-url-suchas-https://something.documents.azure.com:443>
-  - name: masterKey
-    value: <replace-with-master-key-and-add-to-.gitignore>
-  - name: database
-    value: ordersDb
-  - name: collection
-    value: orders
+  - name: redisHost
+    value: dapr_redis:6379
+  - name: redisPassword
+    value: ""

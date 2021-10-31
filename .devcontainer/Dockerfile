@@ -8,7 +8,7 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Choice] Go version
 ARG GO_VERSION="1.17"
-RUN if [ "${GO_VERSION}" != "none" ]; then su vscode -c "sudo wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -P /tmp && sudo tar -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz -C /usr/local/ 2>&1 && echo \"export PATH=/usr/local/go/bin:${PATH}\" | sudo tee /etc/profile.d/go.sh"; fi
+RUN if [ "${GO_VERSION}" != "none" ]; then wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -P /tmp && sudo tar -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz -C /usr/local/ 2>&1 && echo "export PATH=/usr/local/go/bin:${PATH}" | sudo tee /etc/profile.d/go.sh; fi
 
 # [Option] Install Azure CLI
 ARG INSTALL_AZURE_CLI="false"
@@ -27,6 +27,7 @@ ARG USERNAME=vscode
 # own dependencies. A user of "automatic" attempts to reuse an user ID if one already exists.
 COPY library-scripts/docker-debian.sh /tmp/library-scripts/
 RUN apt-get update \
+    && apt-get install pip -y \
     # Use Docker script from script library to set things up
     && /bin/bash /tmp/library-scripts/docker-debian.sh "${ENABLE_NONROOT_DOCKER}" "/var/run/docker-host.sock" "/var/run/docker.sock" "${USERNAME}" \
     # Install Dapr

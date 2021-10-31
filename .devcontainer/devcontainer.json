@@ -1,0 +1,4 @@
+{
+    "image": "ghcr.io/azure-samples/devcontainers/container-apps-demo:0.1",
+    "forwardPorts": [3000, 5000, 8050]
+  }

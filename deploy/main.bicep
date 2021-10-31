@@ -1,6 +1,6 @@
 param location string = 'northcentralusstage'
 param environmentName string = 'env-${uniqueString(resourceGroup().id)}'
-param apimName string = 'store-api-management'
+param apimName string = 'store-api-mgmt-${uniqueString(resourceGroup().id)}'
 param nodeImage string = 'nginx'
 param nodePort int = 3000
 param isNodeExternalIngress bool = true

@@ -9,7 +9,9 @@
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
-		"PATH": "/home/vscode/.dapr/bin/:${containerEnv:PATH}"
+		"PATH": "/home/vscode/.dapr/bin/:${containerEnv:PATH}",
+		"INVENTORY_SERVICE_NAME": "go-app",
+		"ORDER_SERVICE_NAME": "python-app"
 	},
 	
 	// Set *default* container specific settings.json values on container create.

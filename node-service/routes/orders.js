@@ -9,7 +9,15 @@ router.get('/', async function(req, res, next) {
   
   var data = await axios.get(`${orderService}/order?id=${req.query.id}`);
   
-  res.send(`Order status for ${req.query.id}:\n${JSON.stringify(data.data)}`);
+  res.send(`${JSON.stringify(data.data)}`);
+});
+
+/* GET users listing. */
+router.post('/', async function(req, res, next) {
+  
+  var data = await axios.post(`${orderService}/order?id=${req.query.id}`, req.body);
+  
+  res.send(`${JSON.stringify(data.data)}`);
 });
 
 module.exports = router;

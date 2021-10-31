@@ -1,8 +1,6 @@
 package main
 
 import (
-	"os"
-
 	dapr "github.com/dapr/go-sdk/client"
 )
 
@@ -15,7 +13,6 @@ func main() {
 	}
 	a.Initialize(
 		client,
-		os.Getenv("PYTHON_APP_FQDN"),
 	)
 
 	a.Run(":8050")

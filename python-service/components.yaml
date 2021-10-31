@@ -7,9 +7,9 @@ spec:
   version: v1
   metadata:
   - name: url
-    value: 'https://cosmos-d3x2s63oxwsfk.documents.azure.com:443/'
+    value: <replace-with-account-url-suchas-https://something.documents.azure.com:443>
   - name: masterKey
-    value: 'as1xiY0XBjGRSifdMQugrWVqueBJyB7JdMQ7qqJtn9Ba9chxborWulPjkoer8gYi3sYrPLGjlKwrrstD1FOi0A=='
+    value: <replace-with-master-key-and-add-to-.gitignore>
   - name: database
     value: ordersDb
   - name: collection

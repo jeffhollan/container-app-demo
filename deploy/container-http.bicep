@@ -57,6 +57,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       }
     }
     template: {
+      // revisionSuffix: 'somevalue'
       containers: [
         {
           image: containerImage

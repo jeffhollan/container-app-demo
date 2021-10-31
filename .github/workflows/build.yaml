@@ -21,7 +21,9 @@ jobs:
       contents: read
       packages: write
     outputs:
-      containerImage: ${{ steps.image-digest.outputs.digest }}
+      containerImage-node: ${{ steps.image-digest.outputs.digest-node-service }}
+      containerImage-python: ${{ steps.image-digest.outputs.digest-python-service }}
+      containerImage-go: ${{ steps.image-digest.outputs.digest-go-service }}
       containerTag: ${{ fromJson(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
     steps:
       - name: Checkout repository
@@ -57,11 +59,11 @@ jobs:
 
       - name: Output digest
         id: image-digest
-        run: echo "::set-output name=digest::$(docker inspect ${{ fromJson(steps.meta.outputs.json).tags[0] }} | jq -r '.[].RepoDigests[0]')"
+        run: echo "::set-output name=digest-${{ matrix.services.imageName }}::$(docker inspect ${{ fromJson(steps.meta.outputs.json).tags[0] }} | jq -r '.[].RepoDigests[0]')"
   
   deploy:
     runs-on: ubuntu-latest
-    needs: [build-python, build-go, build-node]
+    needs: [build]
     permissions:
       contents: read
       packages: read
@@ -86,13 +88,13 @@ jobs:
             az group create -g ${{ secrets.RESOURCE_GROUP }} -l northcentralus
             az deployment group create -g ${{ secrets.RESOURCE_GROUP }} -f ./deploy/main.bicep \
              -p \
-                nodeImage='${{ needs.build-node.outputs.containerImage }}' \
+                nodeImage='${{ needs.build.outputs.containerImage-node }}' \
                 nodePort=3000 \
                 isNodeExternalIngress=true \
-                pythonImage='${{ needs.build-python.outputs.containerImage }}' \
+                pythonImage='${{ needs.build.outputs.containerImage-python }}' \
                 pythonPort=5000 \
                 isPythonExternalIngress=true \
-                goImage='${{ needs.build-go.outputs.containerImage }}' \
+                goImage='${{ needs.build.outputs.containerImage-go }}' \
                 goPort=8050 \
                 isGoExternalIngress=true \
                 containerRegistry=${{ env.REGISTRY }} \

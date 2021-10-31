@@ -43,7 +43,8 @@ def createOrder():
     with DaprClient() as d:
         d.wait(5)
         try:
-            id = request.json.id
+            # Get ID from the request body
+            id = request.json['id']
             if id:
                 # Save the order to Cosmos DB via Dapr
                 d.save_state(store_name='orders', key=id, value=json.dumps(request.json))
@@ -60,4 +61,4 @@ def createOrder():
         finally:
             app.logger.info('created order')
 
-app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=os.getenv('PORT', '5000'))

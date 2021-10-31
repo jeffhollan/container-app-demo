@@ -7,9 +7,9 @@ spec:
   version: v1
   metadata:
   - name: url
-    value: 'https://cosmos-vjhepqwyh42cw.documents.azure.com:443/'
+    value: 'https://cosmos-d3x2s63oxwsfk.documents.azure.com:443/'
   - name: masterKey
-    value: 'LS06eSIjNlAy3cihXiQ0nthgECxw6sEgfecXlODYNYO07uhONqnuo8sjRBvmPEJuDLNDTZyhbpqir7fqb2iOvw=='
+    value: 'as1xiY0XBjGRSifdMQugrWVqueBJyB7JdMQ7qqJtn9Ba9chxborWulPjkoer8gYi3sYrPLGjlKwrrstD1FOi0A=='
   - name: database
     value: ordersDb
   - name: collection

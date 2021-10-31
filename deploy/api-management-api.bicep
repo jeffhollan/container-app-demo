@@ -31,7 +31,7 @@ var productsSet = [
     productDescription: 'Some description of this product'
     productTerms: 'Tems and conditions here for this product'
     isSubscriptionRequired: false
-    isApprovalRequired: false
+    // isApprovalRequired: false
     // subscriptionLimit: 1
     publishState: 'published' // may be 'notPublished'
   }
@@ -51,7 +51,7 @@ resource ProductRecords 'Microsoft.ApiManagement/service/products@2020-12-01' = 
     description: product.productDescription
     terms: product.productTerms
     subscriptionRequired: product.isSubscriptionRequired
-    approvalRequired: product.isApprovalRequired
+    // approvalRequired: product.isApprovalRequired
     // subscriptionsLimit: product.subscriptionLimit
     state: product.publishState
   }

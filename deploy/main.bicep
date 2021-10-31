@@ -147,7 +147,7 @@ module apimStoreApi 'api-management-api.bicep' = {
   params: {
     apiName: 'store-api'
     apimInstanceName: apimName
-    apiEndPointURL: '${nodeService.outputs.fqdn}/swagger.json'
+    apiEndPointURL: 'https://${nodeService.outputs.fqdn}/swagger.json'
   }
   dependsOn: [
     apim

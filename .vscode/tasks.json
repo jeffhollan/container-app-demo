@@ -24,6 +24,20 @@
             "options": {
                 "cwd": "${workspaceFolder}/go-service"
             }
+        },
+        {
+            "appId": "go-app",
+            "appPort": 8050,
+            "label": "daprd-debug-go",
+            "httpPort": 3500,
+            "metricsPort": 9090,
+            "grpcPort": 50001,
+            "type": "daprd"
+        },
+        {
+            "appId": "go-app",
+            "label": "daprd-down-go",
+            "type": "daprd-down"
         }
     ]
 }

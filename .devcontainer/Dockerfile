@@ -5,6 +5,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
 # [Choice] Go version
 ARG GO_VERSION="1.17"
 RUN if [ "${GO_VERSION}" != "none" ]; then wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -P /tmp && sudo tar -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz -C /usr/local/ 2>&1 && echo "export PATH=/usr/local/go/bin:${PATH}" | sudo tee /etc/profile.d/go.sh; fi
+RUN GOBIN=/tmp/ /usr/local/go/bin/go install github.com/go-delve/delve/cmd/dlv@master && mv /tmp/dlv $GOPATH/bin/dlv-dap
 
 # [Choice] Node.js version: none, lts/*, 16, 14, 12, 10
 ARG NODE_VERSION="14"
@@ -36,7 +37,7 @@ RUN wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
 # Add daprd to the path for the VS Code Dapr extension.
-ENV PATH "$PATH:/home/${USERNAME}/.dapr/bin"
+ENV PATH="${PATH}:/home/${USERNAME}/.dapr/bin"
 
 # Setting the ENTRYPOINT to docker-init.sh will configure non-root access 
 # to the Docker socket. The script will also execute CMD as needed.

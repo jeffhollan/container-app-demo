@@ -5,11 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch go-service (inventory)",
+            "name": "Launch Go service",
             "type": "go",
             "request": "launch",
-            "mode": "auto",
-            "program": "${fileDirname}"
+            "mode": "debug",
+            "program": "${workspaceFolder}/go-service",
+            "preLaunchTask": "daprd-debug-go",
+            "postDebugTask": "daprd-down-go",
         }
+        
     ]
 }

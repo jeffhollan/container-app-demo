@@ -20,6 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// expose the swagger.json OpenAPI definition
+app.use(express.static(path.join(__dirname, 'open-api')));
+
 
 // Provide routes to different microservices
 app.use('/', indexRouter);

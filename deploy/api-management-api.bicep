@@ -32,17 +32,7 @@ var productsSet = [
     productTerms: 'Tems and conditions here for this product'
     isSubscriptionRequired: false
     isApprovalRequired: false
-    subscriptionLimit: 1
-    publishState: 'published' // may be 'notPublished'
-  }
-  {
-    productName: 'product2'
-    displayName: 'Product 2'
-    productDescription: 'Some description of this product'
-    productTerms: 'Tems and conditions here for this product'
-    isSubscriptionRequired: true
-    isApprovalRequired: true
-    subscriptionLimit: 1
+    // subscriptionLimit: 1
     publishState: 'published' // may be 'notPublished'
   }
 ]
@@ -62,7 +52,7 @@ resource ProductRecords 'Microsoft.ApiManagement/service/products@2020-12-01' = 
     terms: product.productTerms
     subscriptionRequired: product.isSubscriptionRequired
     approvalRequired: product.isApprovalRequired
-    subscriptionsLimit: product.subscriptionLimit
+    // subscriptionsLimit: product.subscriptionLimit
     state: product.publishState
   }
 }]
